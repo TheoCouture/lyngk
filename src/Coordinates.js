@@ -20,7 +20,7 @@ Lyngk.Coordinates = function (c, l) {
         [0,1,1,1,1,1,1,1,0],
         [0,0,1,1,1,1,1,1,0],
         [0,0,1,1,1,1,1,1,1],
-        [0,0,0,1,1,1,1,1,0],
+        [0,0,0,0,1,1,1,1,0],
         [0,0,0,0,0,0,1,0,0]
         ];
     }
@@ -31,6 +31,20 @@ Lyngk.Coordinates = function (c, l) {
 
     this.is_valid = function() {
         return (grid[colonne][ligne] == 1);
+    }
+
+    this.is_43_Coordinates = function() {
+        var numb = 0
+        for (var i = 0; i < 9; i++) {
+            for (var j = 0; j < 9; j++) {
+                if (grid[i][j] == 1)
+                {
+                    numb++;
+                }
+            }
+        }
+        console.log(numb);
+        return numb;
     }
 
 

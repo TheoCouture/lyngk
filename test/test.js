@@ -7,6 +7,10 @@ LyngkTestCase.prototype.testStory1 = function (){
     var coordinates = new Lyngk.Coordinates('B',2);
 
     assertFalse(coordinates.is_valid());
+}
 
-    assertEquals(coordinates.is_43_Coordinates(),43);
+LyngkTestCase.prototype.testStory2 = function (){
+    var coordinates = new Lyngk.Coordinates('B',2);
+
+    assertEquals(43,coordinates.is_43_Coordinates());
 }

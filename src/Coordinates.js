@@ -47,5 +47,9 @@ Lyngk.Coordinates = function (c, l) {
         return numb;
     }
 
+    this.is_Coordinates_in_String_Format = function( coord ) {
+        return (typeof coord === 'string' || coord instanceof String)
+    }
+
 
 };

@@ -23,21 +23,21 @@ Lyngk.Coordinates = function (c, l) {
         [0,0,0,0,1,1,1,1,0],
         [0,0,0,0,0,0,1,0,0]
         ];
-    }
+    };
 
     init(c,l);
 
 
 
     this.is_valid = function() {
-        return (grid[colonne][ligne] == 1);
-    }
+        return (grid[colonne][ligne] === 1);
+    };
 
     this.is_43_Coordinates = function() {
-        var numb = 0
+        var numb = 0;
         for (var i = 0; i < 9; i++) {
             for (var j = 0; j < 9; j++) {
-                if (grid[i][j] == 1)
+                if (grid[i][j] === 1)
                 {
                     numb++;
                 }
@@ -45,11 +45,11 @@ Lyngk.Coordinates = function (c, l) {
         }
         console.log(numb);
         return numb;
-    }
+    };
 
     this.is_Coordinates_in_String_Format = function( coord ) {
         return (typeof coord === 'string' || coord instanceof String)
-    }
+    };
 
 
 };

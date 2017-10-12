@@ -20,3 +20,10 @@ LyngkTestCase.prototype.testStory3 = function (){
 
     assertTrue(coordinates.is_Coordinates_in_String_Format("B2"));
 };
+
+
+LyngkTestCase.prototype.testStory4 = function (){
+    var coordinates = new Lyngk.Coordinates('B',2);
+
+    assertEquals("invalid",coordinates.is_Coordinates_Valid("B2"));
+};

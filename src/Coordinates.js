@@ -51,5 +51,17 @@ Lyngk.Coordinates = function (c, l) {
         return (typeof coord === 'string' || coord instanceof String)
     };
 
+    this.is_Coordinates_Valid = function( coord ) {
+
+       if ((coord.length === 2) && ((coord.charCodeAt(0) >= 65 &&  coord.charCodeAt(0) <= 73) || (coord.charCodeAt(0) >= 97 &&  coord.charCodeAt(0) <= 105)) && (coord.charCodeAt(1) >= 49 &&  coord.charCodeAt(1) <= 57))
+       {
+           return 'valid'
+       }else
+       {
+           return 'invalid'
+       }
+
+    };
+
 
 };

@@ -31,5 +31,5 @@ LyngkTestCase.prototype.testStory4 = function (){
 LyngkTestCase.prototype.testStory5 = function (){
     var coordinates = new Lyngk.Coordinates('B',2);
 
-    assertEquals(coordinates,coordinates.Clone());
+    assertEquals(coordinates.In_String_Format(),coordinates.Clone().In_String_Format());
 };

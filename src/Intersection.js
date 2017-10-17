@@ -30,9 +30,17 @@ Lyngk.Intersection = function () {
         if (numberofpiece == 0)
         {
             actualstate = Lyngk.State.ONE_PIECE;
-        }else
+        }
+        else
         {
-            actualstate = Lyngk.State.STACK;
+            if (numberofpiece < 4)
+            {
+                actualstate = Lyngk.State.STACK;
+            }
+            else
+            {
+                actualstate = Lyngk.State.FULL_STACK;
+            }
         }
         numberofpiece++;
 

@@ -69,5 +69,11 @@ Lyngk.Coordinates = function (c, l) {
 
     };
 
+    this.Hash = function()  {
+
+        return (colonne+1)*10+ligne+1;
+
+    };
+
 
 };

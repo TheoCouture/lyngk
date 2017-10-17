@@ -51,9 +51,9 @@ Lyngk.Coordinates = function (c, l) {
         return String.fromCharCode(65 + colonne)+(ligne+1).toString();
     };
 
-    this.is_Coordinates_Valid = function( coord ) {
+    this.is_Coordinates_Valid = function( ) {
 
-        if ((coord.length === 2) && ((coord.charCodeAt(0) >= 65 &&  coord.charCodeAt(0) <= 73) || (coord.charCodeAt(0) >= 97 &&  coord.charCodeAt(0) <= 105)) && (coord.charCodeAt(1) >= 49 &&  coord.charCodeAt(1) <= 57))
+        if ((colonne >= 0 &&  colonne <= 8) && (ligne >= 0 &&  ligne <= 8))
         {
             return 'valid'
         }else
@@ -65,7 +65,7 @@ Lyngk.Coordinates = function (c, l) {
 
     this.Clone = function()  {
 
-        return new Coordinates(colonne,ligne);
+        return new Lyngk.Coordinates(String.fromCharCode(65 + colonne),(ligne+1).toString());
 
     };
 

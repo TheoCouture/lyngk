@@ -23,13 +23,19 @@ LyngkTestCase.prototype.testStory3 = function (){
 
 
 LyngkTestCase.prototype.testStory4 = function (){
-    var coordinates = new Lyngk.Coordinates('B',2);
+    var coordinates = new Lyngk.Coordinates('Z',2);
 
-    assertEquals("invalid",coordinates.is_Coordinates_Valid("Z2"));
+    assertEquals("invalid",coordinates.is_Coordinates_Valid());
 };
 
-LyngkTestCase.prototype.testStory5 = function (){
+LyngkTestCase.prototype.testStory5 = function () {
+    var coordinates = new Lyngk.Coordinates('B', 2);
+
+    assertEquals(coordinates.In_String_Format(), coordinates.Clone().In_String_Format());
+};
+
+LyngkTestCase.prototype.testStory6 = function (){
     var coordinates = new Lyngk.Coordinates('B',2);
 
-    assertEquals(coordinates.In_String_Format(),coordinates.Clone().In_String_Format());
+    assertEquals("22",coordinates.Hash());
 };

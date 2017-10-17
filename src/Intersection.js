@@ -44,5 +44,5 @@ Lyngk.Intersection = function () {
         }
         numberofpiece++;
 
-    }
+    };
 };

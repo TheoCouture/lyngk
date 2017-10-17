@@ -53,7 +53,7 @@ Lyngk.Coordinates = function (c, l) {
 
     this.is_Coordinates_Valid = function( ) {
 
-        if ((colonne >= 0 &&  colonne <= 8) && (ligne >= 0 &&  ligne <= 8))
+        if ((colonne >= 0 &&  colonne <= 8) && (ligne >= 0 &&  ligne <= 8) && this.is_valid())
         {
             return 'valid'
         }else

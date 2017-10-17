@@ -6,10 +6,12 @@ Lyngk.Intersection = function () {
 
     var actualstate;
     var color;
+    var numberofpiece;
 
     var init = function ()
     {
         actualstate= Lyngk.State.VACANT
+        numberofpiece = 0;
     };
 
     init();
@@ -23,8 +25,16 @@ Lyngk.Intersection = function () {
     };
 
     this.Put_New_Piece = function (c) {
-        actualstate = Lyngk.State.ONE_PIECE;
+
         color = c.Get_Color();
+        if (numberofpiece == 0)
+        {
+            actualstate = Lyngk.State.ONE_PIECE;
+        }else
+        {
+            actualstate = Lyngk.State.STACK;
+        }
+        numberofpiece++;
 
     }
 };

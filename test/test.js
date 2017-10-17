@@ -84,3 +84,25 @@ LyngkTestCase.prototype.testStory10 = function (){
 
     assertEquals(Lyngk.State.FULL_STACK,intersections.Get_State());
 };
+
+LyngkTestCase.prototype.testStory11 = function (){
+
+    var colonne;
+    var ligne;
+    var coordinates;
+    var MyEngine = new Engine();
+
+    for (var i=0; i<9; i++){
+        colonne = String.fromCharCode(65 + i);
+        for (var j=0; i<9; i++)
+        {
+            ligne= (j+1).toString();
+            coordinates = new Coordinates(colonne,ligne);
+            if (coordinates.is_Coordinates_Valid())
+                assertEquals(Lyngk.State.VACANT,MyEngine.Get_Intersection(coordinates.Hash()));
+        }
+    }
+
+
+};
+

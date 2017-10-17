@@ -27,3 +27,9 @@ LyngkTestCase.prototype.testStory4 = function (){
 
     assertEquals("invalid",coordinates.is_Coordinates_Valid("Z2"));
 };
+
+LyngkTestCase.prototype.testStory5 = function (){
+    var coordinates = new Lyngk.Coordinates('B',2);
+
+    assertEquals(coordinates,coordinates.Clone());
+};

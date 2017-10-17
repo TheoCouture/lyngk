@@ -47,19 +47,25 @@ Lyngk.Coordinates = function (c, l) {
         return numb;
     };
 
-    this.is_Coordinates_in_String_Format = function( coord ) {
-        return (typeof coord === 'string' || coord instanceof String)
+    this.In_String_Format = function() {
+        return String.fromCharCode(65 + colonne)+(ligne+1).toString();
     };
 
     this.is_Coordinates_Valid = function( coord ) {
 
-       if ((coord.length === 2) && ((coord.charCodeAt(0) >= 65 &&  coord.charCodeAt(0) <= 73) || (coord.charCodeAt(0) >= 97 &&  coord.charCodeAt(0) <= 105)) && (coord.charCodeAt(1) >= 49 &&  coord.charCodeAt(1) <= 57))
-       {
-           return 'valid'
-       }else
-       {
-           return 'invalid'
-       }
+        if ((coord.length === 2) && ((coord.charCodeAt(0) >= 65 &&  coord.charCodeAt(0) <= 73) || (coord.charCodeAt(0) >= 97 &&  coord.charCodeAt(0) <= 105)) && (coord.charCodeAt(1) >= 49 &&  coord.charCodeAt(1) <= 57))
+        {
+            return 'valid'
+        }else
+        {
+            return 'invalid'
+        }
+
+    };
+
+    this.Clone = function()  {
+
+        return new Coordinates(colonne,ligne);
 
     };
 

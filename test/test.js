@@ -18,7 +18,7 @@ LyngkTestCase.prototype.testStory2 = function (){
 LyngkTestCase.prototype.testStory3 = function (){
     var coordinates = new Lyngk.Coordinates('B',2);
 
-    assertTrue(coordinates.is_Coordinates_in_String_Format("B2"));
+    assertEquals("B2",coordinates.In_String_Format());
 };
 
 

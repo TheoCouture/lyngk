@@ -43,7 +43,7 @@ Lyngk.Coordinates = function (c, l) {
                 }
             }
         }
-        console.log(numb);
+
         return numb;
     };
 

@@ -43,5 +43,5 @@ LyngkTestCase.prototype.testStory6 = function (){
 LyngkTestCase.prototype.testStory7 = function (){
     var intersections = new Lyngk.Intersection();
 
-    assertEquals(0,intersections.get_State());
+    assertEquals(0,intersections.Get_State());
 };

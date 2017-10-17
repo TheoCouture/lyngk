@@ -43,5 +43,15 @@ LyngkTestCase.prototype.testStory6 = function (){
 LyngkTestCase.prototype.testStory7 = function (){
     var intersections = new Lyngk.Intersection();
 
-    assertEquals(0,intersections.Get_State());
+    assertEquals(Lyngk.State.VACANT,intersections.Get_State());
+};
+
+LyngkTestCase.prototype.testStory8 = function (){
+
+    var intersections = new Lyngk.Intersection();
+    var piecebleu = new Lynkg.Piece(Lyngk.Engine.Color.BLUE);
+    intersections.Set_Intersection(piecebleu);
+
+    assertEquals(Lyngk.State.ONE_PIECE,intersections.Get_State());
+    assertEquals(Lyngk.Color.BLUE,intersections.Get_Color());
 };

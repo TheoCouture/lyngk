@@ -27,6 +27,7 @@ Lyngk.Intersection = function () {
     this.Put_New_Piece = function (c) {
 
         color = c.Get_Color();
+        //console.log("color piece :" +  color);
         if (numberofpiece == 0)
         {
             actualstate = Lyngk.State.ONE_PIECE;

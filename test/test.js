@@ -101,7 +101,6 @@ LyngkTestCase.prototype.testStory11 = function (){
         {
             ligne= (j+1).toString();
             coordinates = new Lyngk.Coordinates(colonne,ligne);
-            debugger;
             if (coordinates.is_Coordinates_Valid() === "valid")
                 assertEquals(Lyngk.State.ONE_PIECE,MyEngine.Get_Intersection(coordinates.Hash()).Get_State());
         }
@@ -109,4 +108,69 @@ LyngkTestCase.prototype.testStory11 = function (){
 
 
 };
+
+LyngkTestCase.prototype.testStory12 = function (){
+
+    var colonne;
+    var ligne;
+    var coordinates;
+
+    var blue=0;
+    var red=0;
+    var ivory=0;
+    var black=0;
+    var green=0;
+    var white=0;
+
+    var MyEngine = new Lyngk.Engine();
+
+
+
+    for (var i=0; i<9; i++){
+        colonne = String.fromCharCode(65 + i);
+        for (var j=0; j<9; j++)
+        {
+            ligne= (j+1).toString();
+            coordinates = new Lyngk.Coordinates(colonne,ligne);
+            if (coordinates.is_Coordinates_Valid() === "valid"){
+                switch((MyEngine.Get_Intersection(coordinates.Hash())).Get_Color())
+                {
+                    case Lyngk.Color.WHITE :
+                        white++;
+                        break;
+
+                    case Lyngk.Color.BLUE :
+                        blue++;
+                        break;
+
+                    case Lyngk.Color.RED :
+                        red++;
+                        break;
+
+                    case Lyngk.Color.IVORY:
+                        ivory++;
+                        break;
+
+                    case Lyngk.Color.GREEN :
+                        green++;
+                        break;
+
+                    case Lyngk.Color.BLACK :
+                        black++;
+                        break;
+                }
+            }
+
+        }
+    }
+
+    assertEquals(3,white);
+    assertEquals(8,ivory);
+    assertEquals(8,blue);
+    assertEquals(8,red);
+    assertEquals(8,black);
+    assertEquals(8,green);
+
+};
+
 

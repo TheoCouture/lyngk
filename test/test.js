@@ -90,18 +90,20 @@ LyngkTestCase.prototype.testStory11 = function (){
     var colonne;
     var ligne;
     var coordinates;
+
     var MyEngine = new Lyngk.Engine();
 
-    debugger;
+
 
     for (var i=0; i<9; i++){
         colonne = String.fromCharCode(65 + i);
-        for (var j=0; i<9; i++)
+        for (var j=0; j<9; j++)
         {
             ligne= (j+1).toString();
             coordinates = new Lyngk.Coordinates(colonne,ligne);
+            debugger;
             if (coordinates.is_Coordinates_Valid() === "valid")
-                assertEquals(Lyngk.State.VACANT,MyEngine.Get_Intersection(coordinates.Hash()));
+                assertEquals(Lyngk.State.ONE_PIECE,MyEngine.Get_Intersection(coordinates.Hash()).Get_State());
         }
     }
 

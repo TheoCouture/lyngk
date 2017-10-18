@@ -36,7 +36,7 @@ Lyngk.Engine = function () {
         }
 
 
-        i
+
         for (var i=0; i<9; i++){
             colonne = String.fromCharCode(65 + i);
             for (var j=0; j<9; j++)

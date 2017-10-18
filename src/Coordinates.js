@@ -47,8 +47,10 @@ Lyngk.Coordinates = function (c, l) {
         return numb;
     };
 
+
     this.In_String_Format = function() {
-        return String.fromCharCode(65 + colonne)+(ligne+1).toString();
+
+        return (String.fromCharCode(65 + colonne)+(ligne+1)).toString();
     };
 
     this.is_Coordinates_Valid = function( ) {

@@ -173,4 +173,28 @@ LyngkTestCase.prototype.testStory12 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory13 = function (){
+
+    var colonne;
+    var ligne;
+    var coordinates;
+
+    var MyEngine = new Lyngk.Engine();
+
+
+
+    for (var i=0; i<9; i++){
+        colonne = String.fromCharCode(65 + i);
+        for (var j=0; j<9; j++)
+        {
+            ligne= (j+1).toString();
+            coordinates = new Lyngk.Coordinates(colonne,ligne);
+            if (coordinates.is_Coordinates_Valid() === "valid")
+                assertEquals(1,MyEngine.Get_Intersection(coordinates.Hash()).Get_Hauteur());
+        }
+    }
+
+
+};
+
 

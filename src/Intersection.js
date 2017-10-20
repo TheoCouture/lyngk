@@ -17,9 +17,17 @@ Lyngk.Intersection = function () {
 
     init();
 
+    this.Get_Pile = function (){
+        var returnedpile = pile;
+        pile = [];
+        actualstate = Lyngk.State.VACANT;
+
+        return returnedpile;
+    };
+
     this.Get_State = function (){
         return actualstate;
-    }
+    };
 
     this.Get_Color = function (){
         return pile[pile.length-1].Get_Color();
@@ -27,7 +35,12 @@ Lyngk.Intersection = function () {
 
     this.Get_Hauteur = function (){
         return pile.length;
-    }
+    };
+
+    this.Put_New_Pile = function (c){
+        debugger;
+        pile = pile.concat(c);
+    };
 
     this.Put_New_Piece = function (c) {
 

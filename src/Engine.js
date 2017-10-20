@@ -59,9 +59,12 @@ Lyngk.Engine = function () {
 
     this.Get_Intersection_Color = function(c){
         return Plateau[c].Get_Color();
-    }
+    };
 
 
+    this.Move_Pieces = function (a,b){
+        Plateau[b].Put_New_Pile(Plateau[a].Get_Pile());
+    };
 
     init();
 };

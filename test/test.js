@@ -220,5 +220,20 @@ LyngkTestCase.prototype.testStory14 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory15 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('A',3);
+    var coordinates2 = new Lyngk.Coordinates('B',3)
+
+    var colorA3 = MyEngine.Get_Intersection_Color(coordinates.Hash());
+    console.log(MyEngine.Get_Intersection_Color(coordinates2.Hash()));
+    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
+    var colorB3 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
+
+
+    assertEquals(colorA3,colorB3);
+};
+
 
 

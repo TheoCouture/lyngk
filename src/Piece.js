@@ -6,8 +6,6 @@ Lyngk.Piece = function (c) {
 
     var init = function (c){
         color = c;
-
-
     };
 
     init(c);

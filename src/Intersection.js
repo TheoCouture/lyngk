@@ -7,6 +7,7 @@ Lyngk.Intersection = function () {
     var actualstate;
     var color;
     var numberofpiece;
+    var pile = [];
 
     var init = function ()
     {
@@ -21,11 +22,16 @@ Lyngk.Intersection = function () {
     }
 
     this.Get_Color = function (){
-        return color;
+        return pile[pile.length-1].Get_Color();
     };
+
+    this.Get_Hauteur = function (){
+        return pile.length;
+    }
 
     this.Put_New_Piece = function (c) {
 
+        pile[pile.length]= c;
         color = c.Get_Color();
         //console.log("color piece :" +  color);
         if (numberofpiece === 0)

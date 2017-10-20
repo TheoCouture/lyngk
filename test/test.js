@@ -232,6 +232,24 @@ LyngkTestCase.prototype.testStory15 = function (){
 
 
     assertEquals(colorA3,colorB3);
+    assertEquals(Lyngk.State.VACANT,(MyEngine.Get_Intersection(coordinates.Hash()).Get_State()));
+};
+
+LyngkTestCase.prototype.testStory16 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('A',3);
+    var coordinates2 = new Lyngk.Coordinates('B',3);
+    var coordinates3 = new Lyngk.Coordinates('B',2);
+
+    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
+    var colorB3 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
+    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
+    var colorB2 = MyEngine.Get_Intersection_Color(coordinates3.Hash());
+
+
+    assertEquals(colorB3,colorB2);
+    assertEquals(Lyngk.State.VACANT,(MyEngine.Get_Intersection(coordinates2.Hash()).Get_State()));
 };
 
 

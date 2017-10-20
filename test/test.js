@@ -245,7 +245,7 @@ LyngkTestCase.prototype.testStory16 = function (){
     MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
     var colorB3 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
     MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
-    var colorB2 = MyEngine.Get_Intersection_Color(coordinates3.Hash());
+    var colorB2 = MyEngine.Get_Intersection_Color(coordinates3.Hash())
 
 
     assertEquals(colorB3,colorB2);

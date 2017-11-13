@@ -7,6 +7,8 @@ Lyngk.Engine = function () {
 
     var Plateau;
 
+    var joueur;
+
     var init = function(){
         Plateau = [];
         var Pieces = [];
@@ -14,6 +16,7 @@ Lyngk.Engine = function () {
         var ligne;
         var coordinates;
         var index=0;
+        joueur = 1;
 
         for (var a=0; a<8; a++){
             Pieces.push(new Lyngk.Piece(Lyngk.Color.IVORY));
@@ -101,12 +104,17 @@ Lyngk.Engine = function () {
         return (possible);
     };
 
+    this.Get_Joueur = function () {
+        return joueur;
+    }
+
 
     this.Move_Pieces = function (a,b){
 
         if (this.Is_Move_Possible(a,b) && !(this.Not_Same_Colors_Twice(a,b)))
         {
             Plateau[b.Hash()].Put_New_Pile(Plateau[a.Hash()].Get_Pile());
+
             return true;
         }
         else

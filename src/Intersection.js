@@ -33,6 +33,16 @@ Lyngk.Intersection = function () {
         return pile[pile.length-1].Get_Color();
     };
 
+    this.Get_Colors = function (){
+        var colors = [];
+
+        for (var i=0; i< pile.length; i++){
+            colors [i]= pile[i].Get_Color();
+        }
+
+        return colors;
+    }
+
     this.Get_Hauteur = function (){
         return pile.length;
     };

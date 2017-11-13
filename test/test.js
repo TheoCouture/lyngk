@@ -349,6 +349,22 @@ LyngkTestCase.prototype.testStory22 = function (){
     MyEngine.Move_Pieces(coordinates4,coordinates5);
 
 
-    assertFalse( MyEngine.Move_Pieces(coordinates3,coordinates5));
+assertFalse( MyEngine.Move_Pieces(coordinates3,coordinates5));
+};
+
+LyngkTestCase.prototype.testStory23 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('C',5);
+    var coordinates2 = new Lyngk.Coordinates('D',5);
+    var coordinates3 = new Lyngk.Coordinates('E',5);
+    var coordinates4 = new Lyngk.Coordinates('F',5);
+    var coordinates5 = new Lyngk.Coordinates('G',5);
+
+    assertTrue(MyEngine.Move_Pieces(coordinates,coordinates2));
+    assertTrue(MyEngine.Move_Pieces(coordinates2,coordinates3));
+    assertTrue(MyEngine.Move_Pieces(coordinates3,coordinates4));
+    assertTrue(MyEngine.Move_Pieces(coordinates4,coordinates5));
+
 };
 

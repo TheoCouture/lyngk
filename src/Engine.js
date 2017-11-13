@@ -62,8 +62,46 @@ Lyngk.Engine = function () {
     };
 
     this.Is_Move_Possible = function (a,b){
-        return (b.is_Coordinates_Valid() == 'valid' && ((b.Hash() == (a.Hash()-1)) || (b.Hash() ==(a.Hash()+1)) || (b.Hash() ==(a.Hash()+11)) || (b.Hash() ==(a.Hash()-11)) || (b.Hash() ==(a.Hash()+10)) || (b.Hash() ==(a.Hash()-10))));
-    }
+
+        var possible=false;
+        if (a.is_Coordinates_Valid() == "valid" && b.is_Coordinates_Valid() == "valid" && Plateau[b.Hash()].Get_State != Lyngk.VACANT)
+        {
+            var difcolonne = b.get_colonne()-a.get_colonne();
+            var difligne = b.get_ligne()-a.get_ligne();
+
+
+            if ( (difcolonne == difligne) || (difligne == 0 && difcolonne!= 0 ) || (difligne != 0 && difcolonne == 0 )) {
+
+                if (difcolonne > 0)
+                    difcolonne = 1;
+                if (difcolonne < 0)
+                    difcolonne = -1;
+                if (difligne > 0)
+                    difligne = 1;
+                if (difligne < 0)
+                    difligne = -1;
+
+                var i = a.get_colonne();
+                var j = a.get_ligne();
+
+                i = i + difcolonne;
+                j = j + difligne;
+
+                possible = true;
+                while (possible && (i != b.get_colonne() || j != b.get_ligne())) {
+                    if (Plateau[new Lyngk.Coordinates(String.fromCharCode(65+i), j + 1).Hash()].Get_State() != Lyngk.VACANT)
+                        possible = false;
+
+                    i = i + difcolonne;
+                    j = j + difligne;
+
+
+                }
+
+            }
+        }
+        return (possible);
+    };
 
 
     this.Move_Pieces = function (a,b){

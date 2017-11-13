@@ -226,14 +226,14 @@ LyngkTestCase.prototype.testStory15 = function (){
 
     var MyEngine = new Lyngk.Engine();
     var coordinates = new Lyngk.Coordinates('A',3);
-    var coordinates2 = new Lyngk.Coordinates('B',3);
+    var coordinates2 = new Lyngk.Coordinates('B',4);
 
     var colorA3 = MyEngine.Get_Intersection_Color(coordinates.Hash());
     MyEngine.Move_Pieces(coordinates,coordinates2);
-    var colorB3 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
+    var colorB4 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
 
 
-    assertEquals(colorA3,colorB3);
+    assertEquals(colorA3,colorB4);
     assertEquals(Lyngk.State.VACANT,(MyEngine.Get_Intersection(coordinates.Hash()).Get_State()));
 };
 

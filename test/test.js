@@ -286,7 +286,6 @@ LyngkTestCase.prototype.testStory18 = function (){
 LyngkTestCase.prototype.testStory19 = function (){
 
     var MyEngine = new Lyngk.Engine();
-    debugger;
     var coordinates = new Lyngk.Coordinates('I',7);
     var coordinates2 = new Lyngk.Coordinates('H',6);
     var coordinates3 = new Lyngk.Coordinates('H',5);
@@ -299,4 +298,22 @@ LyngkTestCase.prototype.testStory19 = function (){
     assertFalse( MyEngine.Is_Move_Possible(coordinates3,coordinates4));
 };
 
+
+LyngkTestCase.prototype.testStory19 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('A',3);
+    var coordinates2 = new Lyngk.Coordinates('B',3);
+    var coordinates3 = new Lyngk.Coordinates('B',2);
+    var coordinates4 = new Lyngk.Coordinates('C',2);
+    var coordinates5 = new Lyngk.Coordinates('D',2);
+    var coordinates6 = new Lyngk.Coordinates('E',2);
+
+    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
+    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
+    MyEngine.Move_Pieces(coordinates3.Hash(),coordinates4.Hash());
+    MyEngine.Move_Pieces(coordinates4.Hash(),coordinates5.Hash());
+
+    assertFalse( MyEngine.Is_Move_Possible(coordinates5,coordinates6));
+};
 

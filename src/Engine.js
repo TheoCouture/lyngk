@@ -64,7 +64,10 @@ Lyngk.Engine = function () {
     this.Is_Move_Possible = function (a,b){
 
         var possible=false;
-        if ((a.is_Coordinates_Valid() == "valid") && (b.is_Coordinates_Valid() == "valid") && (Plateau[b.Hash()].Get_State() != Lyngk.State.VACANT) && ((((Plateau[b.Hash()].Get_Nb_Piece()) + Plateau[a.Hash()].Get_Nb_Piece())) <6 ))
+        var nbpiecea = Plateau[a.Hash()].Get_Nb_Piece();
+        var nbpieceb =Plateau[b.Hash()].Get_Nb_Piece();
+
+        if ((a.is_Coordinates_Valid() == "valid") && (b.is_Coordinates_Valid() == "valid") && (Plateau[b.Hash()].Get_State() != Lyngk.State.VACANT) && ((nbpiecea + nbpieceb) <6 ) && (nbpiecea >= nbpieceb))
         {
             var difcolonne = b.get_colonne()-a.get_colonne();
             var difligne = b.get_ligne()-a.get_ligne();

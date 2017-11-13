@@ -81,21 +81,16 @@ Lyngk.Engine = function () {
                 if (difligne < 0)
                     difligne = -1;
 
-                var i = a.get_colonne();
-                var j = a.get_ligne();
-
-                i = i + difcolonne;
-                j = j + difligne;
+                var i = a.get_colonne() + difcolonne;
+                var j = a.get_ligne() + difligne;
 
                 possible = true;
                 while (possible && (i != b.get_colonne() || j != b.get_ligne())) {
                     if (Plateau[new Lyngk.Coordinates(String.fromCharCode(65+i), j + 1).Hash()].Get_State() != Lyngk.VACANT)
                         possible = false;
 
-                    i = i + difcolonne;
-                    j = j + difligne;
-
-
+                    i += difcolonne;
+                    j += difligne;
                 }
 
             }

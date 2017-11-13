@@ -27,7 +27,13 @@ Lyngk.Coordinates = function (c, l) {
 
     init(c,l);
 
+    this.get_colonne = function() {
+        return colonne;
+    };
 
+    this.get_ligne = function() {
+        return ligne;
+    };
 
     this.is_valid = function() {
         return (grid[colonne][ligne] === 1);

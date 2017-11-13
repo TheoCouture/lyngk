@@ -61,9 +61,22 @@ Lyngk.Engine = function () {
         return Plateau[c].Get_Color();
     };
 
+    this.Is_Move_Possible = function (a,b){
+        return (b.is_Coordinates_Valid() == 'valid' && ((b.Hash() == (a.Hash()-1)) || (b.Hash() ==(a.Hash()+1)) || (b.Hash() ==(a.Hash()+11)) || (b.Hash() ==(a.Hash()-11)) || (b.Hash() ==(a.Hash()+10)) || (b.Hash() ==(a.Hash()-10))));
+    }
+
 
     this.Move_Pieces = function (a,b){
-        Plateau[b].Put_New_Pile(Plateau[a].Get_Pile());
+
+        if (Plateau[b].Get_State() != Lyngk.State.VACANT)
+        {
+            Plateau[b].Put_New_Pile(Plateau[a].Get_Pile());
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     };
 
     init();

@@ -38,7 +38,7 @@ Lyngk.Intersection = function () {
     };
 
     this.Put_New_Pile = function (c){
-        debugger;
+        //debugger;
         pile = pile.concat(c);
     };
 

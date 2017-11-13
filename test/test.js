@@ -229,7 +229,7 @@ LyngkTestCase.prototype.testStory15 = function (){
     var coordinates2 = new Lyngk.Coordinates('B',3);
 
     var colorA3 = MyEngine.Get_Intersection_Color(coordinates.Hash());
-    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
+    MyEngine.Move_Pieces(coordinates,coordinates2);
     var colorB3 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
 
 
@@ -244,9 +244,9 @@ LyngkTestCase.prototype.testStory16 = function (){
     var coordinates2 = new Lyngk.Coordinates('B',3);
     var coordinates3 = new Lyngk.Coordinates('B',2);
 
-    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
+    MyEngine.Move_Pieces(coordinates,coordinates2);
     var colorB3 = MyEngine.Get_Intersection_Color(coordinates2.Hash());
-    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
+    MyEngine.Move_Pieces(coordinates2,coordinates3);
     var colorB2 = MyEngine.Get_Intersection_Color(coordinates3.Hash());
 
 
@@ -261,11 +261,11 @@ LyngkTestCase.prototype.testStory17 = function (){
     var coordinates2 = new Lyngk.Coordinates('B',3);
     var coordinates3 = new Lyngk.Coordinates('B',2);
 
-    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
-    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
+    MyEngine.Move_Pieces(coordinates,coordinates2);
+    MyEngine.Move_Pieces(coordinates2,coordinates3);
 
 
-    assertFalse(MyEngine.Move_Pieces(coordinates3.Hash(),coordinates2.Hash()));
+    assertFalse(MyEngine.Move_Pieces(coordinates3,coordinates2));
 };
 
 LyngkTestCase.prototype.testStory18 = function (){
@@ -276,8 +276,8 @@ LyngkTestCase.prototype.testStory18 = function (){
     var coordinates3 = new Lyngk.Coordinates('B',2);
     var coordinates4 = new Lyngk.Coordinates('C',2);
 
-    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
-    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
+    MyEngine.Move_Pieces(coordinates,coordinates2);
+    MyEngine.Move_Pieces(coordinates2,coordinates3);
 
 
     assertFalse( MyEngine.Is_Move_Possible(coordinates4,coordinates2));
@@ -291,15 +291,15 @@ LyngkTestCase.prototype.testStory19 = function (){
     var coordinates3 = new Lyngk.Coordinates('H',5);
     var coordinates4 = new Lyngk.Coordinates('H',8);
 
-    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
-    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
+    MyEngine.Move_Pieces(coordinates,coordinates2);
+    MyEngine.Move_Pieces(coordinates2,coordinates3);
 
 
     assertFalse( MyEngine.Is_Move_Possible(coordinates3,coordinates4));
 };
 
 
-LyngkTestCase.prototype.testStory19 = function (){
+LyngkTestCase.prototype.testStory20 = function (){
 
     var MyEngine = new Lyngk.Engine();
     var coordinates = new Lyngk.Coordinates('A',3);
@@ -309,11 +309,12 @@ LyngkTestCase.prototype.testStory19 = function (){
     var coordinates5 = new Lyngk.Coordinates('D',2);
     var coordinates6 = new Lyngk.Coordinates('E',2);
 
-    MyEngine.Move_Pieces(coordinates.Hash(),coordinates2.Hash());
-    MyEngine.Move_Pieces(coordinates2.Hash(),coordinates3.Hash());
-    MyEngine.Move_Pieces(coordinates3.Hash(),coordinates4.Hash());
-    MyEngine.Move_Pieces(coordinates4.Hash(),coordinates5.Hash());
+    MyEngine.Move_Pieces(coordinates,coordinates2);
+    MyEngine.Move_Pieces(coordinates2,coordinates3);
+    MyEngine.Move_Pieces(coordinates3,coordinates4);
+    MyEngine.Move_Pieces(coordinates4,coordinates5);
 
-    assertFalse( MyEngine.Is_Move_Possible(coordinates5,coordinates6));
+
+    assertFalse( MyEngine.Move_Pieces(coordinates5,coordinates6));
 };
 

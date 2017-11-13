@@ -39,7 +39,13 @@ Lyngk.Intersection = function () {
 
     this.Put_New_Pile = function (c){
         //debugger;
-        pile = pile.concat(c);
+        if ( (c.length + pile.length) <6 )
+        {
+            for (var i = 0; i < c.length; i++)
+            {
+                this.Put_New_Piece(c[i]);
+            }
+        }
     };
 
     this.Put_New_Piece = function (c) {
@@ -65,4 +71,8 @@ Lyngk.Intersection = function () {
         numberofpiece++;
 
     };
+
+    this.Get_Nb_Piece = function (){
+        return pile.length;
+    }
 };

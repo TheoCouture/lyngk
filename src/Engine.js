@@ -64,7 +64,7 @@ Lyngk.Engine = function () {
     this.Is_Move_Possible = function (a,b){
 
         var possible=false;
-        if (a.is_Coordinates_Valid() == "valid" && b.is_Coordinates_Valid() == "valid" && Plateau[b.Hash()].Get_State != Lyngk.VACANT)
+        if ((a.is_Coordinates_Valid() == "valid") && (b.is_Coordinates_Valid() == "valid") && (Plateau[b.Hash()].Get_State() != Lyngk.State.VACANT) && ((((Plateau[b.Hash()].Get_Nb_Piece()) + Plateau[a.Hash()].Get_Nb_Piece())) <6 ))
         {
             var difcolonne = b.get_colonne()-a.get_colonne();
             var difligne = b.get_ligne()-a.get_ligne();
@@ -101,9 +101,9 @@ Lyngk.Engine = function () {
 
     this.Move_Pieces = function (a,b){
 
-        if (Plateau[b].Get_State() != Lyngk.State.VACANT)
+        if (this.Is_Move_Possible(a,b))
         {
-            Plateau[b].Put_New_Pile(Plateau[a].Get_Pile());
+            Plateau[b.Hash()].Put_New_Pile(Plateau[a.Hash()].Get_Pile());
             return true;
         }
         else
@@ -111,6 +111,8 @@ Lyngk.Engine = function () {
             return false;
         }
     };
+
+
 
     init();
 };

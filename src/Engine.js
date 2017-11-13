@@ -104,7 +104,7 @@ Lyngk.Engine = function () {
 
     this.Move_Pieces = function (a,b){
 
-        if (this.Is_Move_Possible(a,b))
+        if (this.Is_Move_Possible(a,b) && !(this.Not_Same_Colors_Twice(a,b)))
         {
             Plateau[b.Hash()].Put_New_Pile(Plateau[a.Hash()].Get_Pile());
             return true;
@@ -113,6 +113,26 @@ Lyngk.Engine = function () {
         {
             return false;
         }
+    };
+
+    this.Not_Same_Colors_Twice =  function (a,b){
+
+
+        var color = [];
+        color = Plateau[a.Hash()].Get_Colors();
+        color = color.concat(Plateau[b.Hash()].Get_Colors());
+        var nbcolor = [];
+        nbcolor = [0,0,0,0,0,0];
+        var doublecolor = false;
+        var i = 0;
+        do{
+           nbcolor[color[i]]++;
+           if (nbcolor[color[i]] > 1 && color != Lyngk.Color.WHITE)
+               doublecolor = true;
+           i++
+        }while((i < color.length) && (doublecolor == false))
+
+        return doublecolor;
     };
 
 

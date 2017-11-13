@@ -368,3 +368,11 @@ LyngkTestCase.prototype.testStory23 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory24 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+
+    assertEquals(1,MyEngine.Get_Joueur());
+
+};
+

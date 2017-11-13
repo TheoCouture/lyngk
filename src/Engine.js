@@ -114,7 +114,7 @@ Lyngk.Engine = function () {
         if (this.Is_Move_Possible(a,b) && !(this.Not_Same_Colors_Twice(a,b)))
         {
             Plateau[b.Hash()].Put_New_Pile(Plateau[a.Hash()].Get_Pile());
-
+            joueur = (joueur == 1 ) ? 2 : 1;
             return true;
         }
         else

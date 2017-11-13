@@ -376,3 +376,15 @@ LyngkTestCase.prototype.testStory24 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory24 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('A',3);
+    var coordinates2 = new Lyngk.Coordinates('B',4);
+
+    MyEngine.Move_Pieces(coordinates,coordinates2);
+
+    assertEquals(2,MyEngine.Get_Joueur())
+
+};
+

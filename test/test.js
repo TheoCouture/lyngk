@@ -335,3 +335,20 @@ LyngkTestCase.prototype.testStory21 = function (){
     assertFalse( MyEngine.Move_Pieces(coordinates5,coordinates4));
 };
 
+LyngkTestCase.prototype.testStory22 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('A',3);
+    var coordinates2 = new Lyngk.Coordinates('B',3);
+    var coordinates3 = new Lyngk.Coordinates('B',2);
+    var coordinates4 = new Lyngk.Coordinates('C',2);
+    var coordinates5 = new Lyngk.Coordinates('D',2);
+
+    MyEngine.Move_Pieces(coordinates,coordinates2);
+    MyEngine.Move_Pieces(coordinates2,coordinates3);
+    MyEngine.Move_Pieces(coordinates4,coordinates5);
+
+
+    assertFalse( MyEngine.Move_Pieces(coordinates3,coordinates5));
+};
+

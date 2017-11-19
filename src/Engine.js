@@ -36,10 +36,10 @@ Lyngk.Engine = function () {
         var coordinates;
         for (j = 0; j < 9; j+=1) {
             coordinates = new Lyngk.Coordinates(column, j + 1);
-            if (coordinates.IsCoordinatesValid() === "valid") {
-                plateau[coordinates.Hash()] = new Lyngk.Intersection();
-                plateau[coordinates.Hash()].PutNewPiece(Pieces[nbpulled]);
-                nbpulled++;
+            if (coordinates.isCoordinatesValid() === "valid") {
+                plateau[coordinates.hash()] = new Lyngk.Intersection();
+                plateau[coordinates.hash()].putNewPiece(Pieces[nbpulled]);
+                nbpulled+=1;
             }
         }
 
@@ -80,7 +80,7 @@ Lyngk.Engine = function () {
         var position,randomIndex,itemAtIndex;
         var Pieces = a;
 
-        for (position = Pieces.length - 1; position  >= 0; position --) {
+        for (position = Pieces.length - 1; position  >= 0; position-=1) {
 
             randomIndex = Math.floor(Math.random() * (position  + 1));
             itemAtIndex = Pieces[randomIndex];
@@ -93,37 +93,37 @@ Lyngk.Engine = function () {
     };
 
 
-    this.GetIntersection = function (c) {
+    this.getIntersection = function (c) {
         return Plateau[c];
     };
 
-    this.GetIntersectionColor = function (c) {
-        return Plateau[c].GetColor();
+    this.getIntersectionColor = function (c) {
+        return Plateau[c].getColor();
     };
 
-    var AreCoordinatesValid = function (a, b) {
-        if (a.IsCoordinatesValid() == "valid"){
-            if (b.IsCoordinatesValid() == "valid" && IsOccupied(b)) {
+    var areCoordinatesValid = function (a, b) {
+        if (a.isCoordinatesValid() === "valid"){
+            if (b.isCoordinatesValid() === "valid" && isOccupied(b)) {
                 return true;
             }
         }
         return false;
     };
 
-    var IsOccupied = function (a) {
-        return (Plateau[a.Hash()].GetState() != Lyngk.State.VACANT);
+    var isOccupied = function (a) {
+        return (Plateau[a.hash()].getState() !== Lyngk.State.VACANT);
     };
 
-    var IsFutureNumberofPieceValid = function (a,b){
-        var nbpiecea = Plateau[a.Hash()].GetNbPiece();
-        var nbpieceb = Plateau[b.Hash()].GetNbPiece();
+    var isFutureNumberofPieceValid = function (a,b){
+        var nbpiecea = Plateau[a.hash()].getNbPiece();
+        var nbpieceb = Plateau[b.hash()].getNbPiece();
 
         return ((nbpiecea + nbpieceb) < 6 ) && (nbpiecea >= nbpieceb);
     };
 
     var getDirection = function (a) {
 
-        if (a != 0) {
+        if (a !== 0) {
             return a / Math.abs(a);
         }
         return 0;
@@ -132,19 +132,19 @@ Lyngk.Engine = function () {
     var isDirectionCorrect = function (DiffColumn,DiffLine){
 
         var correct = false;
-        if ((DiffColumn == DiffLine) || (DiffLine == 0 && DiffColumn != 0 )){
+        if ((DiffColumn === DiffLine) || (DiffLine === 0 && DiffColumn !== 0 )){
             correct = true;
         }
-        if (DiffLine != 0 && DiffColumn == 0 ){
+        if (DiffLine !== 0 && DiffColumn === 0 ){
             correct = true;
         }
         return correct;
     };
 
-    var IsMoveCorrect = function (a,b){
+    var isMoveCorrect = function (a,b){
 
-        var difcolonne = b.GetColonne() - a.GetColonne();
-        var difligne = b.GetLigne() - a.GetLigne();
+        var difcolonne = b.getColonne() - a.getColonne();
+        var difligne = b.getLigne() - a.getLigne();
         var correct = false;
 
         if (isDirectionCorrect(difcolonne,difligne) ) {
@@ -152,26 +152,26 @@ Lyngk.Engine = function () {
            difcolonne = getDirection (difcolonne);
            difligne = getDirection (difligne);
 
-            correct = !IsThereObstacle(a,b,difcolonne,difligne);
+            correct = !isThereObstacle(a,b,difcolonne,difligne);
 
         }
 
         return correct;
     };
 
-    var IsSamePoint = function (ptA,ptB){
-        return (ptA.toString() == ptB.toString());
+    var isSamePoint = function (ptA, ptB){
+        return (ptA.toString() === ptB.toString());
     };
 
-    var IsThereObstacle = function (origPoint,destPoint,colDir,lineDir){
+    var isThereObstacle = function (origPoint,destPoint,colDir,lineDir){
         var noobstacle = true;
 
-        var i = origPoint.GetColonne()+1 + colDir;
-        var j = origPoint.GetLigne()+1 + lineDir;
-        var nwPt = Plateau[new Lyngk.Coordinates(i,j).Hash()];
+        var i = origPoint.getColonne()+1 + colDir;
+        var j = origPoint.getLigne()+1 + lineDir;
+        var nwPt = Plateau[new Lyngk.Coordinates(i,j).hash()];
 
-        while (noobstacle && IsSamePoint(nwPt,destPoint)) {
-            if (IsOccupied(new Lyngk.Coordinates(i,j)))
+        while (noobstacle && isSamePoint(nwPt,destPoint)) {
+            if (isOccupied(new Lyngk.Coordinates(i,j)))
             {
                 noobstacle = false;
             }
@@ -183,10 +183,10 @@ Lyngk.Engine = function () {
         return noobstacle;
     };
 
-    this.IsMovePossible = function (a, b) {
-        if (AreCoordinatesValid(a,b) && IsFutureNumberofPieceValid(a,b))
+    this.isMovePossible = function (a, b) {
+        if (areCoordinatesValid(a,b) && isFutureNumberofPieceValid(a,b))
         {
-                if (IsMoveCorrect(a,b) && NotSameColorsTwice(a,b))
+                if (isMoveCorrect(a,b) && NotSameColorsTwice(a,b))
                 {
                     return true;
                 }
@@ -196,16 +196,16 @@ Lyngk.Engine = function () {
 
     };
 
-    this.GetJoueur = function () {
+    this.getJoueur = function () {
         return joueur;
     };
 
 
-    this.MovePieces = function (a, b) {
+    this.movePieces = function (a, b) {
 
-        if (this.IsMovePossible(a, b)) {
-            Plateau[b.Hash()].PutNewPile(Plateau[a.Hash()].GetPile());
-            joueur = (joueur == 1 ) ? 2 : 1;
+        if (this.isMovePossible(a, b)) {
+            Plateau[b.hash()].putNewPile(Plateau[a.hash()].getPile());
+            joueur = (joueur === 1 ) ? 2 : 1;
             return true;
         }
         else {
@@ -214,17 +214,17 @@ Lyngk.Engine = function () {
     };
 
     var NotSameColorsTwice = function (a, b) {
-        var color = Plateau[a.Hash()].GetColors();
-        color = color.concat(Plateau[b.Hash()].GetColors());
+        var color = Plateau[a.hash()].getColors();
+        color = color.concat(Plateau[b.hash()].getColors());
         var nbcolor = [0, 0, 0, 0, 0, 0];
         var i = 0;
         do {
-            nbcolor[color[i]]++;
-            if (nbcolor[color[i]] > 1 && color != Lyngk.Color.WHITE)
+            nbcolor[color[i]]+=1;
+            if (nbcolor[color[i]] > 1 && color !== Lyngk.Color.WHITE)
             {
                 return false;
             }
-            i++;
+            i+=1;
         } while (i < color.length);
 
         return true;

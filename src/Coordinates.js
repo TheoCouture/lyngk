@@ -31,15 +31,15 @@ Lyngk.Coordinates = function (c, l) {
 
     init(c, l);
 
-    this.GetColonne = function () {
+    this.getColonne = function () {
         return colonne;
     };
 
-    this.GetLigne = function () {
+    this.getLigne = function () {
         return ligne;
     };
 
-    this.IsValid = function () {
+    this.isValid = function () {
         return (grid[colonne][ligne] === 1);
     };
 
@@ -71,11 +71,11 @@ Lyngk.Coordinates = function (c, l) {
         return (String.fromCharCode(65 + colonne) + (ligne + 1));
     };
 
-    this.IsCoordinatesValid = function () {
+    this.isCoordinatesValid = function () {
 
         var IsValid = 'invalid';
         if (colonne >= 0 && colonne <= 8) {
-            if ((ligne >= 0 && ligne <= 8) && this.IsValid()) {
+            if ((ligne >= 0 && ligne <= 8) && this.isValid()) {
                 IsValid = 'valid';
             }
         }
@@ -89,7 +89,7 @@ Lyngk.Coordinates = function (c, l) {
     };
 
 
-    this.Hash = function () {
+    this.hash = function () {
 
         return (colonne + 1) * 10 + ligne + 1;
 

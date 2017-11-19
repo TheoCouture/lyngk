@@ -16,7 +16,7 @@ Lyngk.Intersection = function () {
 
     init();
 
-    this.GetPile = function () {
+    this.getPile = function () {
         var returnedpile = pile;
         pile = [];
         actualstate = Lyngk.State.VACANT;
@@ -24,42 +24,42 @@ Lyngk.Intersection = function () {
         return returnedpile;
     };
 
-    this.GetState = function () {
+    this.getState = function () {
         return actualstate;
     };
 
-    this.GetColor = function () {
+    this.getColor = function () {
         return color;
     };
 
-    this.GetColors = function () {
+    this.getColors = function () {
         var colors = [];
         var i;
-        for (i = 0; i < pile.length; i++) {
-            colors [i] = pile[i].GetColor();
+        for (i = 0; i < pile.length; i+=1) {
+            colors [i] = pile[i].getColor();
         }
 
         return colors;
     };
 
-    this.GetHauteur = function () {
+    this.getHauteur = function () {
         return pile.length;
     };
 
-    this.PutNewPile = function (c) {
+    this.putNewPile = function (c) {
         //debugger;
         if ((c.length + pile.length) < 6) {
             var i;
-            for (i = 0; i < c.length; i++) {
-                this.PutNewPiece(c[i]);
+            for (i = 0; i < c.length; i+=1) {
+                this.putNewPiece(c[i]);
             }
         }
     };
 
-    this.PutNewPiece = function (c) {
+    this.putNewPiece = function (c) {
 
         pile[pile.length] = c;
-        color = c.GetColor();
+        color = c.getColor();
         //console.log("color piece :" +  color);
         if (numberofpiece === 0) {
             actualstate = Lyngk.State.ONE_PIECE;
@@ -76,7 +76,7 @@ Lyngk.Intersection = function () {
 
     };
 
-    this.GetNbPiece = function () {
+    this.getNbPiece = function () {
         return numberofpiece;
     };
 };

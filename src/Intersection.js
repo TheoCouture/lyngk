@@ -5,19 +5,18 @@ Lyngk.State = {VACANT: 0, ONE_PIECE: 1, STACK: 2, FULL_STACK: 3};
 Lyngk.Intersection = function () {
 
     var actualstate;
-    var color;
     var numberofpiece;
+    var color;
     var pile = [];
 
-    var init = function ()
-    {
-        actualstate= Lyngk.State.VACANT
+    var init = function () {
+        actualstate = Lyngk.State.VACANT;
         numberofpiece = 0;
     };
 
     init();
 
-    this.Get_Pile = function (){
+    this.GetPile = function () {
         var returnedpile = pile;
         pile = [];
         actualstate = Lyngk.State.VACANT;
@@ -25,64 +24,59 @@ Lyngk.Intersection = function () {
         return returnedpile;
     };
 
-    this.Get_State = function (){
+    this.GetState = function () {
         return actualstate;
     };
 
-    this.Get_Color = function (){
-        return pile[pile.length-1].Get_Color();
+    this.GetColor = function () {
+        return color;
     };
 
-    this.Get_Colors = function (){
+    this.GetColors = function () {
         var colors = [];
-
-        for (var i=0; i< pile.length; i++){
-            colors [i]= pile[i].Get_Color();
+        var i;
+        for (i = 0; i < pile.length; i++) {
+            colors [i] = pile[i].GetColor();
         }
 
         return colors;
-    }
+    };
 
-    this.Get_Hauteur = function (){
+    this.GetHauteur = function () {
         return pile.length;
     };
 
-    this.Put_New_Pile = function (c){
+    this.PutNewPile = function (c) {
         //debugger;
-        if ( (c.length + pile.length) <6 )
-        {
-            for (var i = 0; i < c.length; i++)
-            {
-                this.Put_New_Piece(c[i]);
+        if ((c.length + pile.length) < 6) {
+            var i;
+            for (i = 0; i < c.length; i++) {
+                this.PutNewPiece(c[i]);
             }
         }
     };
 
-    this.Put_New_Piece = function (c) {
+    this.PutNewPiece = function (c) {
 
-        pile[pile.length]= c;
-        color = c.Get_Color();
+        pile[pile.length] = c;
+        color = c.GetColor();
         //console.log("color piece :" +  color);
-        if (numberofpiece === 0)
-        {
+        if (numberofpiece === 0) {
             actualstate = Lyngk.State.ONE_PIECE;
         }
-        else
-        {
-            if (numberofpiece < 4)
-            {
+        else {
+            if (numberofpiece < 4) {
                 actualstate = Lyngk.State.STACK;
             }
-            else
-            {
+            else {
                 actualstate = Lyngk.State.FULL_STACK;
             }
         }
-        numberofpiece++;
+        numberofpiece+=1;
 
     };
 
-    this.Get_Nb_Piece = function (){
-        return pile.length;
-    }
+    this.GetNbPiece = function () {
+        return numberofpiece;
+    };
 };

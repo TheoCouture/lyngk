@@ -4,14 +4,14 @@ Lyngk.Piece = function (c) {
 
     var color;
 
-    var init = function (c){
+    var init = function (c) {
         color = c;
     };
 
     init(c);
 
-    this.Get_Color = function (){
+    this.GetColor = function () {
 
         return color;
-    }
+    };
 };

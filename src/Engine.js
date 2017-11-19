@@ -129,16 +129,32 @@ Lyngk.Engine = function () {
         return 0;
     };
 
-    var isDirectionCorrect = function (DiffColumn,DiffLine){
+    var isDirectionCorrect = function (DifColumn,DifLine){
 
         var correct = false;
-        if ((DiffColumn === DiffLine) || (DiffLine === 0 && DiffColumn !== 0 )){
-            correct = true;
-        }
-        if (DiffLine !== 0 && DiffColumn === 0 ){
+        if ( isDirDiag(DifColumn,DifLine) || isDirCross(DifColumn,DifLine) ){
             correct = true;
         }
         return correct;
+    };
+
+    var isDirDiag = function (DiffColumn,DiffLine){
+        return (DiffColumn === DiffLine);
+    };
+
+    var isDirCross = function (DiffCol,DiffLine) {
+
+        return (isDirColumn(DiffCol,DiffLine) || isDirLine(DiffCol,DiffLine));
+    };
+
+    var isDirLine = function (DiffCol,DiffLine) {
+
+        return (DiffLine !== 0 && DiffCol === 0 );
+    };
+
+    var isDirColumn = function (DiffCol,DiffLine) {
+
+        return (DiffLine === 0 && DiffCol !== 0);
     };
 
     var isMoveCorrect = function (a,b){

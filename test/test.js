@@ -388,3 +388,20 @@ LyngkTestCase.prototype.testStory25 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory26 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var coordinates = new Lyngk.Coordinates('A',3);
+    var coordinates2 = new Lyngk.Coordinates('B',3);
+
+    MyEngine.setClaimcolor(Lyngk.Color.RED);
+    MyEngine.movePieces(coordinates,coordinates2);
+    MyEngine.setClaimcolor(Lyngk.Color.GREEN);
+
+    assertEquals(Lyngk.Color.RED,MyEngine.getClaimcolor(1))
+    assertEquals(Lyngk.Color.GREEN,MyEngine.getClaimcolor(2))
+
+};
+
+
+

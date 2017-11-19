@@ -10,9 +10,12 @@ Lyngk.Engine = function () {
 
     var joueur;
 
+    var colorclaim
+
 
     var init = function(){
         Plateau = [];
+        colorclaim = [];
 
         joueur = 1;
         Plateau = PutPiecesOnBoard(Plateau, ShufflePieces(GeneratePieces()));
@@ -99,6 +102,14 @@ Lyngk.Engine = function () {
 
     this.getIntersectionColor = function (c) {
         return Plateau[c].getColor();
+    };
+
+    this.setClaimcolor = function (color){
+        colorclaim[joueur] = color;
+    };
+
+    this.getClaimcolor = function (numjoueur){
+        return colorclaim[numjoueur];
     };
 
     var areCoordinatesValid = function (a, b) {

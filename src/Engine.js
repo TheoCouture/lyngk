@@ -15,9 +15,9 @@ Lyngk.Engine = function () {
 
     var init = function(){
         Plateau = [];
-        colorclaim = [];
+        colorclaim = [-1,-1];
 
-        joueur = 1;
+        joueur = 0;
         //Plateau = PutPiecesOnBoard(Plateau, ShufflePieces(GeneratePieces()));
         Plateau = PutPiecesOnBoard(Plateau, GeneratePieces());
 
@@ -112,7 +112,7 @@ Lyngk.Engine = function () {
     };
 
     this.getClaimcolor = function (numjoueur){
-        return colorclaim[numjoueur];
+        return colorclaim[numjoueur-1];
     };
 
     var areCoordinatesValid = function (a, b) {
@@ -213,10 +213,19 @@ Lyngk.Engine = function () {
         return false;
     };
 
+    var colorOk = function(a){
+        var colorinter;
+        var colorotherplayer;
+
+        colorinter = Plateau[a.hash()].getColor();
+        colorotherplayer = colorclaim[(joueur === 0)? 1 : 0];
+        return (colorinter !== colorotherplayer);
+    }
+
     this.isMovePossible = function (a, b) {
         if (areCoordinatesValid(a,b) && isFutureNumberofPieceValid(a,b))
         {
-                if (isMoveCorrect(a,b) && NotSameColorsTwice(a,b))
+                if (isMoveCorrect(a,b) && NotSameColorsTwice(a,b) && colorOk(a))
                 {
                     return true;
                 }
@@ -227,7 +236,7 @@ Lyngk.Engine = function () {
     };
 
     this.getJoueur = function () {
-        return joueur;
+        return joueur+1;
     };
 
 
@@ -247,7 +256,7 @@ Lyngk.Engine = function () {
         if (this.isMovePossible(a, b)) {
             Plateau[b.hash()].putNewPile(Plateau[a.hash()].getPile());
             checkPileState(b);
-            joueur = (joueur === 1 ) ? 2 : 1;
+            joueur = (joueur === 0)? 1 : 0;
             return true;
         }
         else {

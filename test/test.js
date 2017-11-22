@@ -468,3 +468,11 @@ LyngkTestCase.prototype.testStory28 = function (){
 };
 
 
+LyngkTestCase.prototype.testStory29 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+
+    assertEquals(40,MyEngine.getNbMovablePieces());
+
+};
+

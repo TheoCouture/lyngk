@@ -356,15 +356,15 @@ LyngkTestCase.prototype.testStory23 = function (){
 
     var MyEngine = new Lyngk.Engine();
     var coordinates = new Lyngk.Coordinates('C',5);
-    var coordinates2 = new Lyngk.Coordinates('D',5);
-    var coordinates3 = new Lyngk.Coordinates('E',5);
-    var coordinates4 = new Lyngk.Coordinates('F',5);
-    var coordinates5 = new Lyngk.Coordinates('G',5);
+    var coordinates2 = new Lyngk.Coordinates('C',6);
+    var coordinates3 = new Lyngk.Coordinates('D',7);
+    var coordinates4 = new Lyngk.Coordinates('E',7);
+    var coordinates5 = new Lyngk.Coordinates('D',6);
 
     assertTrue(MyEngine.movePieces(coordinates,coordinates2));
     assertTrue(MyEngine.movePieces(coordinates2,coordinates3));
     assertTrue(MyEngine.movePieces(coordinates3,coordinates4));
-    assertTrue(MyEngine.movePieces(coordinates4,coordinates5));
+    assertFalse(MyEngine.movePieces(coordinates4,coordinates5));
 
 };
 

@@ -10,7 +10,7 @@ Lyngk.Engine = function () {
 
     var joueur;
 
-    var colorclaim
+    var colorclaim;
 
 
     var init = function(){
@@ -18,7 +18,8 @@ Lyngk.Engine = function () {
         colorclaim = [];
 
         joueur = 1;
-        Plateau = PutPiecesOnBoard(Plateau, ShufflePieces(GeneratePieces()));
+        //Plateau = PutPiecesOnBoard(Plateau, ShufflePieces(GeneratePieces()));
+        Plateau = PutPiecesOnBoard(Plateau, GeneratePieces());
 
     };
 
@@ -40,6 +41,8 @@ Lyngk.Engine = function () {
         for (j = 0; j < 9; j+=1) {
             coordinates = new Lyngk.Coordinates(column, j + 1);
             if (coordinates.isCoordinatesValid() === "valid") {
+                console.log(coordinates.InStringFormat());
+                console.log(Pieces[nbpulled].getColor());
                 plateau[coordinates.hash()] = new Lyngk.Intersection();
                 plateau[coordinates.hash()].putNewPiece(Pieces[nbpulled]);
                 nbpulled+=1;
@@ -187,24 +190,26 @@ Lyngk.Engine = function () {
     };
 
     var isSamePoint = function (ptA, ptB){
-        return (ptA.toString() === ptB.toString());
+        return (ptA.InStringFormat() === ptB.InStringFormat());
     };
 
     var isThereObstacle = function (origPoint,destPoint,colDir,lineDir){
-        var noobstacle = true;
+        var noobstacle = false;
 
         var i = origPoint.getColonne()+1 + colDir;
         var j = origPoint.getLigne()+1 + lineDir;
-        var nwPt = Plateau[new Lyngk.Coordinates(i,j).hash()];
+        var nwPt = new Lyngk.Coordinates(i,j);
 
-        while (noobstacle && isSamePoint(nwPt,destPoint)) {
-            if (isOccupied(new Lyngk.Coordinates(i,j)))
+        while (!noobstacle && !isSamePoint(nwPt,destPoint)) {
+            if (isOccupied(nwPt))
             {
-                noobstacle = false;
+                noobstacle = true;
             }
 
             i += colDir;
             j += lineDir;
+
+            nwPt = new Lyngk.Coordinates(i,j);
         }
 
         return noobstacle;

@@ -41,8 +41,8 @@ Lyngk.Engine = function () {
         for (j = 0; j < 9; j+=1) {
             coordinates = new Lyngk.Coordinates(column, j + 1);
             if (coordinates.isCoordinatesValid() === "valid") {
-                console.log(coordinates.InStringFormat());
-                console.log(Pieces[nbpulled].getColor());
+                //console.log(coordinates.toString());
+                //console.log(Pieces[nbpulled].getColor());
                 plateau[coordinates.hash()] = new Lyngk.Intersection();
                 plateau[coordinates.hash()].putNewPiece(Pieces[nbpulled]);
                 nbpulled+=1;
@@ -190,20 +190,18 @@ Lyngk.Engine = function () {
     };
 
     var isSamePoint = function (ptA, ptB){
-        return (ptA.InStringFormat() === ptB.InStringFormat());
+        return (ptA.toString() === ptB.toString());
     };
 
     var isThereObstacle = function (origPoint,destPoint,colDir,lineDir){
-        var noobstacle = false;
-
         var i = origPoint.getColonne()+1 + colDir;
         var j = origPoint.getLigne()+1 + lineDir;
         var nwPt = new Lyngk.Coordinates(i,j);
 
-        while (!noobstacle && !isSamePoint(nwPt,destPoint)) {
+        while (!isSamePoint(nwPt,destPoint)) {
             if (isOccupied(nwPt))
             {
-                noobstacle = true;
+                return true;
             }
 
             i += colDir;
@@ -212,7 +210,7 @@ Lyngk.Engine = function () {
             nwPt = new Lyngk.Coordinates(i,j);
         }
 
-        return noobstacle;
+        return false;
     };
 
     this.isMovePossible = function (a, b) {
@@ -233,10 +231,22 @@ Lyngk.Engine = function () {
     };
 
 
+
+    var checkPileState = function (a) {
+        if (Plateau[a.hash()].getState() === Lyngk.State.FULL_STACK){
+            if (Plateau[a.hash()].getColor() === colorclaim[joueur]){
+                Plateau[a.hash()].removePile();
+            }
+
+        }
+    };
+
+
     this.movePieces = function (a, b) {
 
         if (this.isMovePossible(a, b)) {
             Plateau[b.hash()].putNewPile(Plateau[a.hash()].getPile());
+            checkPileState(b);
             joueur = (joueur === 1 ) ? 2 : 1;
             return true;
         }

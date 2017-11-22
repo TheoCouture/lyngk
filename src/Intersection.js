@@ -5,13 +5,11 @@ Lyngk.State = {VACANT: 0, ONE_PIECE: 1, STACK: 2, FULL_STACK: 3};
 Lyngk.Intersection = function () {
 
     var actualstate;
-    var numberofpiece;
     var color;
     var pile = [];
 
     var init = function () {
         actualstate = Lyngk.State.VACANT;
-        numberofpiece = 0;
     };
 
     init();
@@ -56,27 +54,28 @@ Lyngk.Intersection = function () {
         }
     };
 
+    this.removePile = function(){
+        pile = [];
+        actualstate = 0;
+    };
+
     this.putNewPiece = function (c) {
 
         pile[pile.length] = c;
         color = c.getColor();
         //console.log("color piece :" +  color);
-        if (numberofpiece === 0) {
-            actualstate = Lyngk.State.ONE_PIECE;
-        }
-        else {
-            if (numberofpiece < 4) {
-                actualstate = Lyngk.State.STACK;
-            }
-            else {
-                actualstate = Lyngk.State.FULL_STACK;
+
+        actualstate=pile.length;
+        if (pile.length > 1){
+            actualstate=2;
+            if (pile.length === 5){
+                actualstate=3;
             }
         }
-        numberofpiece+=1;
 
     };
 
     this.getNbPiece = function () {
-        return numberofpiece;
+        return pile.length;
     };
 };

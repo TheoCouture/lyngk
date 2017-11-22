@@ -66,7 +66,7 @@ Lyngk.Coordinates = function (c, l) {
 
 
 
-    this.InStringFormat = function () {
+    this.toString = function () {
 
         return (String.fromCharCode(65 + colonne) + (ligne + 1));
     };

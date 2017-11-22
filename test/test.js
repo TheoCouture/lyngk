@@ -20,7 +20,7 @@ LyngkTestCase.prototype.testStory2 = function (){
 LyngkTestCase.prototype.testStory3 = function (){
     var coordinates = new Lyngk.Coordinates('B',2);
 
-    assertEquals("B2",coordinates.InStringFormat());
+    assertEquals("B2",coordinates.toString());
 };
 
 
@@ -33,7 +33,7 @@ LyngkTestCase.prototype.testStory4 = function (){
 LyngkTestCase.prototype.testStory5 = function () {
     var coordinates = new Lyngk.Coordinates('B', 2);
 
-    assertEquals(coordinates.InStringFormat(), coordinates.Clone().InStringFormat());
+    assertEquals(coordinates.toString(), coordinates.Clone().toString());
 };
 
 LyngkTestCase.prototype.testStory6 = function (){
@@ -406,11 +406,12 @@ LyngkTestCase.prototype.testStory26 = function (){
 LyngkTestCase.prototype.testStory27 = function (){
 
     var MyEngine = new Lyngk.Engine();
-    var C7 = new Lyngk.Coordinates('C',7);
+
     var C6 = new Lyngk.Coordinates('C',6);
     var C5 = new Lyngk.Coordinates('C',5);
     var C4 = new Lyngk.Coordinates('C',4);
     var C3 = new Lyngk.Coordinates('C',3);
+    var C2 = new Lyngk.Coordinates('C',2);
 
     var D3 = new Lyngk.Coordinates('D',3);
     var D4 = new Lyngk.Coordinates('D',4);
@@ -420,19 +421,19 @@ LyngkTestCase.prototype.testStory27 = function (){
 
 
     MyEngine.setClaimcolor(Lyngk.Color.BLACK);
-    MyEngine.movePieces(C7,C6);
+    MyEngine.movePieces(C6,C5);
 
     MyEngine.movePieces(D3,D4);
 
-    MyEngine.movePieces(C6,C5);
+    MyEngine.movePieces(C5,C4);
 
     MyEngine.movePieces(D4,D5);
 
-    MyEngine.movePieces(C5,C4);
+    MyEngine.movePieces(C4,C3);
 
     MyEngine.movePieces(D5,D6);
 
-    MyEngine.movePieces(C4,C3);
+    MyEngine.movePieces(C3,C2);
 
     var colonne;
     var ligne;
@@ -444,7 +445,7 @@ LyngkTestCase.prototype.testStory27 = function (){
         {
             coordinates = new Lyngk.Coordinates(i+1,j+1);
             if (coordinates.isCoordinatesValid() === "valid")
-                nbpieces += Plateau[coordinates.hash()].GetNbPieces();
+                nbpieces += MyEngine.getIntersection(coordinates.hash()).getNbPiece();
         }
     }
 

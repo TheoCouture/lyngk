@@ -403,5 +403,53 @@ LyngkTestCase.prototype.testStory26 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory27 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var C7 = new Lyngk.Coordinates('C',7);
+    var C6 = new Lyngk.Coordinates('C',6);
+    var C5 = new Lyngk.Coordinates('C',5);
+    var C4 = new Lyngk.Coordinates('C',4);
+    var C3 = new Lyngk.Coordinates('C',3);
+
+    var D3 = new Lyngk.Coordinates('D',3);
+    var D4 = new Lyngk.Coordinates('D',4);
+    var D5 = new Lyngk.Coordinates('D',5);
+    var D6 = new Lyngk.Coordinates('D',6);
+    var D7 = new Lyngk.Coordinates('D',7);
+
+
+    MyEngine.setClaimcolor(Lyngk.Color.BLACK);
+    MyEngine.movePieces(C7,C6);
+
+    MyEngine.movePieces(D3,D4);
+
+    MyEngine.movePieces(C6,C5);
+
+    MyEngine.movePieces(D4,D5);
+
+    MyEngine.movePieces(C5,C4);
+
+    MyEngine.movePieces(D5,D6);
+
+    MyEngine.movePieces(C4,C3);
+
+    var colonne;
+    var ligne;
+    var coordinates;
+    var nbpieces=0;
+
+    for (var i=0; i<9; i++){
+        for (var j=0; j<9; j++)
+        {
+            coordinates = new Lyngk.Coordinates(i+1,j+1);
+            if (coordinates.isCoordinatesValid() === "valid")
+                nbpieces += Plateau[coordinates.hash()].GetNbPieces();
+        }
+    }
+
+    assertEquals(38,nbpieces)
+
+};
 
 

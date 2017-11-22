@@ -453,4 +453,18 @@ LyngkTestCase.prototype.testStory27 = function (){
 
 };
 
+LyngkTestCase.prototype.testStory28 = function (){
+
+    var MyEngine = new Lyngk.Engine();
+    var D5 = new Lyngk.Coordinates('D',5);
+    var D4 = new Lyngk.Coordinates('D',4);
+    var D3 = new Lyngk.Coordinates('D',3);
+
+    MyEngine.setClaimcolor(Lyngk.Color.BLUE);
+    MyEngine.movePieces(D5,D4);
+
+    assertFalse(MyEngine.movePieces(D4,D3));
+
+};
+
 

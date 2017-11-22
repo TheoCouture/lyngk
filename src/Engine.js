@@ -220,7 +220,40 @@ Lyngk.Engine = function () {
         colorinter = Plateau[a.hash()].getColor();
         colorotherplayer = colorclaim[(joueur === 0)? 1 : 0];
         return (colorinter !== colorotherplayer);
-    }
+    };
+
+    this.getNbMovablePieces = function () {
+
+        var NbMovablePieces = 0;
+        for (var i=0; i<9; i++){
+            NbMovablePieces+= getNbMovablePiecesByColumn(i);
+        }
+
+        return NbMovablePieces;
+    };
+
+    var getNbMovablePiecesByColumn= function (column){
+        var Coor;
+        var MovablePieces = 0;
+        for (var j=0; j < 9; j++){
+            Coor = new Lyngk.Coordinates(column+1,j+1);
+            if (Coor.isCoordinatesValid() === "valid" && isOccupied(Coor)) {
+                MovablePieces +=IsMovable(Coor);
+            }
+        }
+        return MovablePieces;
+    };
+
+    var IsMovable = function (coordinates){
+        if (colorOk(coordinates)){
+            if ( Plateau[coordinates.hash()].getColor() != Lyngk.Color.WHITE){
+                return 1;
+            }
+        }
+        return 0;
+    };
+
+
 
     this.isMovePossible = function (a, b) {
         if (areCoordinatesValid(a,b) && isFutureNumberofPieceValid(a,b))

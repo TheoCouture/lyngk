@@ -223,9 +223,9 @@ Lyngk.Engine = function () {
     };
 
     this.getNbMovablePieces = function () {
-
+        var i;
         var NbMovablePieces = 0;
-        for (var i=0; i<9; i++){
+        for (i=0; i<9; i+=1){
             NbMovablePieces+= getNbMovablePiecesByColumn(i);
         }
 
@@ -234,8 +234,9 @@ Lyngk.Engine = function () {
 
     var getNbMovablePiecesByColumn= function (column){
         var Coor;
+        var j;
         var MovablePieces = 0;
-        for (var j=0; j < 9; j++){
+        for (j=0; j < 9; j+=1){
             Coor = new Lyngk.Coordinates(column+1,j+1);
             if (Coor.isCoordinatesValid() === "valid" && isOccupied(Coor)) {
                 MovablePieces +=IsMovable(Coor);
@@ -246,7 +247,7 @@ Lyngk.Engine = function () {
 
     var IsMovable = function (coordinates){
         if (colorOk(coordinates)){
-            if ( Plateau[coordinates.hash()].getColor() != Lyngk.Color.WHITE){
+            if ( Plateau[coordinates.hash()].getColor() !== Lyngk.Color.WHITE){
                 return 1;
             }
         }
